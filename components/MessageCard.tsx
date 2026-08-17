@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { messageData } from '@/data/message';
 import { showToast } from '@/lib/toast';
 import Playlist from '@/components/Playlist';
+import Bouquet from '@/components/Bouquet';
 import FlipCards from '@/components/FlipCards';
 import TypewriterText from '@/components/TypewriterText';
 
@@ -21,6 +22,7 @@ export default function MessageCard({
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
   const [showLetter, setShowLetter] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
+  const [showBouquet, setShowBouquet] = useState(false);
   const [showFlipCards, setShowFlipCards] = useState(false);
   const [typewriterComplete, setTypewriterComplete] = useState({
     signature: false,
@@ -83,8 +85,12 @@ export default function MessageCard({
     return <FlipCards onRestart={onRestart} />;
   }
 
+  if (showBouquet) {
+    return <Bouquet onContinue={() => setShowFlipCards(true)} />;
+  }
+
   if (showPlaylist) {
-    return <Playlist onContinue={() => setShowFlipCards(true)} />;
+    return <Playlist onContinue={() => setShowBouquet(true)} />;
   }
 
   return (
