@@ -7,7 +7,7 @@ I found that the whole world is celebrating you every year! so i decided to cele
 
 for me, You're not only MY PRINCESS, you're the queen of my happiness 🌸
 
-— Yours, Youssuf,
+— Yours, Youssuf`,
   cta: 'Open your gift ✨',
   toast: {
     copied: 'Message copied! Send it with a heart 💌',
@@ -15,4 +15,3 @@ for me, You're not only MY PRINCESS, you're the queen of my happiness 🌸
     shared: 'Shared! 💕',
   },
 };
-
