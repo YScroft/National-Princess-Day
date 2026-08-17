@@ -297,7 +297,7 @@ export default function MessageCard({
                               <br /><br />
                               I just love you more than anything, I know, I said that a lot but everytime I say it because my love has become bigger than before, until now, with every letter I write for you I love you even more (a million times per letter!)
                               <br /><br />
-                              I&apos;m typing this on 17 August, exactly at 9:27, you are sleeping now if you could remember, I sent you a kiss while you were asleep, promised you another one when you wake up. and now I give you 3 kisses, two on both of your cheeks and one on your pretty lips.
+                              I&apos;m typing this on 17 August, exactly at 9:27, you are sleeping now if you could remember, I sent you a kiss while you were asleep, promised you another one when you wake up. and now I give you 3 kisses, two on each cheek and one on your pretty lips.
                             </div>
                             <div className="mt-8 ml-auto w-fit">
                               <div className="font-medium text-[#f04299]">
