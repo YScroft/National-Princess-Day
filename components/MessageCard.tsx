@@ -285,18 +285,17 @@ export default function MessageCard({
                           {/* Letter body */}
                           <div className="handwriting text-sm sm:text-base leading-relaxed text-[#1b0d14] pb-20 pt-6">
                             <div className="mb-4 text-[#f04299] font-medium">
-                              My dearest Divya,
+                              My beloved Hams,
                             </div>
                             <div
                               className="mb-6 text-justify"
                               style={{ textIndent: '2rem' }}
                             >
-                              Every moment with you feels like a beautiful dream
-                              that I never want to wake up from. I want you to
-                              know that you are the most precious person in my
-                              life. Every day with you is a gift, and I&apos;m
-                              grateful for every second we share together. You
-                              make me want to be the best version of myself.
+                            I found that the whole world is celebrating you every year! so i decided to celebrate as well.
+                            For me, You're not only MY PRINCESS, you're the queen of my happiness 🌸
+                            I just love you more than anything, i know, i said that a lot but everytime i say it because my love has become bigger than before, until now, with every letter i write for you i love you even more (a million times per letter!)
+                            im typing this on 17 August, exactly at 9:27, you are sleeping now if you could remember, i sent you a kiss while you were asleep, promised you another one when you wake up. and now i give you 3 kisses, two on both of your cheeks and one on your pretty lips
+                            
                             </div>
                             <div className="mt-8 ml-auto w-fit">
                               <div className="font-medium text-[#f04299]">
