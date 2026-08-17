@@ -8,6 +8,7 @@ import FinalLetter from '../components/FinalLetter';
 
 export default function Home() {
   const [unlocked, setUnlocked] = useState(false);
+  const [isGiftOpened, setIsGiftOpened] = useState(false);
 
   if (!unlocked) {
     return <Passcode onSuccess={() => setUnlocked(true)} />;
@@ -15,7 +16,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#fff9ff] text-[#2d2d2d] flex flex-col items-center">
-      <Hero />
+      <Hero isGiftOpened={isGiftOpened} onOpenGift={() => setIsGiftOpened(true)} />
       <MessageCard />
       <Playlist />
       <FlipCards />
