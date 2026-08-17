@@ -291,11 +291,13 @@ export default function MessageCard({
                               className="mb-6 text-justify"
                               style={{ textIndent: '2rem' }}
                             >
-                            I found that the whole world is celebrating you every year! so i decided to celebrate as well.
-                            For me, You're not only MY PRINCESS, you're the queen of my happiness 🌸
-                            I just love you more than anything, i know, i said that a lot but everytime i say it because my love has become bigger than before, until now, with every letter i write for you i love you even more (a million times per letter!)
-                            im typing this on 17 August, exactly at 9:27, you are sleeping now if you could remember, i sent you a kiss while you were asleep, promised you another one when you wake up. and now i give you 3 kisses, two on both of your cheeks and one on your pretty lips
-                            
+                              I found that the whole world is celebrating you every year! so I decided to celebrate as well.
+                              <br /><br />
+                              For me, You&apos;re not only MY PRINCESS, you&apos;re the queen of my happiness 🌸
+                              <br /><br />
+                              I just love you more than anything, I know, I said that a lot but everytime I say it because my love has become bigger than before, until now, with every letter I write for you I love you even more (a million times per letter!)
+                              <br /><br />
+                              I&apos;m typing this on 17 August, exactly at 9:27, you are sleeping now if you could remember, I sent you a kiss while you were asleep, promised you another one when you wake up. and now I give you 3 kisses, two on both of your cheeks and one on your pretty lips.
                             </div>
                             <div className="mt-8 ml-auto w-fit">
                               <div className="font-medium text-[#f04299]">
