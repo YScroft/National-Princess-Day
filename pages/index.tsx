@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#fff9ff] text-[#2d2d2d] flex flex-col items-center">
       <Hero isGiftOpened={isGiftOpened} onOpenGift={() => setIsGiftOpened(true)} />
-      <MessageCard />
+      <MessageCard isRevealed={isGiftOpened} />
       <Playlist />
       <FlipCards />
       <FinalLetter />
