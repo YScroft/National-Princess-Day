@@ -1,13 +1,13 @@
 export const messageData = {
-  title: 'Happy National Princess Day 👑',
-  subtitle: 'To my favorite princess — today, and every day.',
-  body: `Hey princess,
+  title: 'Happy National Princess -Hams- Day 👑',
+  subtitle: 'To my favorite and ONLY princess',
+  body: `Hey my princess,
 
-I found something pretty today and it made me think of you — soft, bright, and impossible not to smile at. I wanted to celebrate you — your kindness, your laugh, the way you brighten my days.
+I found that the whole world is celebrating you every year! so i decided to celebrate as well.
 
-You're my queen of small things and big heart. Happy National Princess Day. 🌸
+for me, You're not only MY PRINCESS, you're the queen of my happiness 🌸
 
-— With all my love, Rushi`,
+— Yours, Youssuf`,
   cta: 'Open your gift ✨',
   toast: {
     copied: 'Message copied! Send it with a heart 💌',
