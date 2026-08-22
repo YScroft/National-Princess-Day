@@ -71,7 +71,7 @@ export default function Bouquet({ onContinue }: BouquetProps) {
           A Rose for My Only Princess
         </h1>
         <p className="text-sm sm:text-base text-[#9a4c73] mt-1 font-medium">
-          Bloom today, and forever 🌸
+          I Love You today, and forever 🌸
         </p>
       </motion.div>
 
