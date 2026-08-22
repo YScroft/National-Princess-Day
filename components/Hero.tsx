@@ -212,7 +212,7 @@ export default function Hero({ onOpenGift, isGiftOpened }: HeroProps) {
               whileTap={{ scale: 0.95 }}
               aria-label="Open my heart"
             >
-              Open My Heart (be careful, don't hurt it, or you'll hurt yourself) 💖
+              Open My Heart (be careful, don&apos;t hurt it, or you&apos;ll hurt yourself) 💖
             </motion.button>
 
             {/* Decorative element */}
