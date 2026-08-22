@@ -1,179 +1,191 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 interface BouquetProps {
   onContinue: () => void;
 }
 
+interface FallingItem {
+  id: number;
+  x: number;
+  delay: number;
+  duration: number;
+  size: number;
+  symbol: string;
+}
+
 export default function Bouquet({ onContinue }: BouquetProps) {
+  const [items, setItems] = useState<FallingItem[]>([]);
+
+  useEffect(() => {
+    // توليد عناصر متساقطة عشوائية في كامل الصفحة
+    const symbols = ['💖', '🌸', '✨', '💕', '🌷'];
+    const generated = Array.from({ length: 24 }).map((_, i) => ({
+      id: i,
+      x: Math.random() * 100, // نسبة مئوية عبر عرض الشاشة
+      delay: Math.random() * 5,
+      duration: 6 + Math.random() * 5,
+      size: 14 + Math.random() * 16,
+      symbol: symbols[Math.floor(Math.random() * symbols.length)],
+    }));
+    setItems(generated);
+  }, []);
+
   return (
-    <div className="page-container min-h-screen flex flex-col items-center justify-center px-4 py-8 relative">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="max-w-md w-full bg-[#fffbfd] rounded-3xl p-8 border border-pink-200 shadow-2xl flex flex-col items-center text-center relative overflow-hidden"
-      >
-        {/* خلفية ناعمة */}
-        <div className="absolute inset-0 bg-gradient-to-b from-pink-100/40 via-transparent to-pink-50/30 pointer-events-none" />
-
+    <div className="fixed inset-0 min-h-screen w-screen bg-gradient-to-b from-[#fff0f6] via-[#fff5f8] to-[#ffeef5] flex flex-col items-center justify-between py-10 px-4 select-none overflow-hidden z-40">
+      
+      {/* تساقط القلوب والبتلات على كامل الشاشة */}
+      {items.map((item) => (
         <motion.div
-          animate={{ y: [-3, 3, -3] }}
-          transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
-          className="text-2xl mb-1"
+          key={item.id}
+          initial={{ y: -50, x: `${item.x}vw`, opacity: 0, rotate: 0 }}
+          animate={{
+            y: '110vh',
+            opacity: [0, 1, 1, 0],
+            rotate: 360,
+          }}
+          transition={{
+            duration: item.duration,
+            repeat: Infinity,
+            delay: item.delay,
+            ease: 'linear',
+          }}
+          style={{ fontSize: `${item.size}px` }}
+          className="absolute top-0 left-0 pointer-events-none z-0"
         >
-          👑
+          {item.symbol}
         </motion.div>
+      ))}
 
-        <h2 className="text-2xl font-bold text-[#f04299] mb-1 font-display">
-          A Bouquet Just For You
-        </h2>
-        <p className="text-xs text-[#9a4c73] mb-6">
-          Everlasting flowers for my favorite princess 🌸
+      {/* العنوان العلوي */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-center z-10 mt-2"
+      >
+        <span className="text-3xl filter drop-shadow-sm">👑</span>
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-[#f04299] tracking-wide mt-2 font-display">
+          A Rose for My Only Princess
+        </h1>
+        <p className="text-sm sm:text-base text-[#9a4c73] mt-1 font-medium">
+          Bloom today, and forever 🌸
         </p>
+      </motion.div>
 
-        {/* رسم باقة الورود التفاعلية */}
-        <div className="relative w-64 h-64 my-2 flex items-center justify-center">
-          {/* بتلات متطايرة في الخلفية */}
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 0, x: 0 }}
-              animate={{
-                opacity: [0, 0.8, 0],
-                y: [-20, -80 - i * 10],
-                x: [(i % 2 === 0 ? 1 : -1) * (20 + i * 15)],
-                rotate: [0, 180],
-              }}
-              transition={{
-                duration: 3 + i * 0.5,
-                repeat: Infinity,
-                delay: i * 0.6,
-                ease: 'easeOut',
-              }}
-              className="absolute text-pink-300 text-sm select-none pointer-events-none"
-            >
-              🌸
-            </motion.div>
-          ))}
-
-          {/* باقة الورد SVG */}
-          <motion.svg
-            viewBox="0 0 200 200"
-            className="w-full h-full drop-shadow-xl"
-            initial={{ scale: 0.7, rotate: -10 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 1, ease: 'backOut' }}
-          >
-            {/* أوراق الشجر الخضراء */}
-            <motion.path
-              d="M70 120 C 50 100, 40 80, 55 65 C 70 80, 80 100, 70 120 Z"
-              fill="#88b04b"
-              opacity="0.85"
-            />
-            <motion.path
-              d="M130 120 C 150 100, 160 80, 145 65 C 130 80, 120 100, 130 120 Z"
-              fill="#88b04b"
-              opacity="0.85"
-            />
-            <motion.path
-              d="M100 110 C 100 80, 100 60, 100 50 C 110 70, 110 90, 100 110 Z"
-              fill="#7ca242"
-              opacity="0.9"
-            />
-
-            {/* سيقان الزهور */}
-            <path
-              d="M100 130 L90 190 M100 130 L100 195 M100 130 L110 190"
-              stroke="#6b8e23"
-              strokeWidth="4"
-              strokeLinecap="round"
-            />
-
-            {/* شريط الستان (Ribbon) */}
-            <path
-              d="M85 145 Q100 152 115 145 Q100 138 85 145 Z"
-              fill="#ff4d94"
-            />
-            <path
-              d="M93 148 Q85 170 80 180 M107 148 Q115 170 120 180"
-              stroke="#ff4d94"
-              strokeWidth="3.5"
-              strokeLinecap="round"
-              fill="none"
-            />
-
-            {/* الوردة الجانبية اليسرى (وردية فاتحة) */}
-            <motion.g
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              <circle cx="75" cy="95" r="22" fill="#ffccd5" />
-              <circle cx="75" cy="95" r="16" fill="#ff99ac" />
-              <path
-                d="M65 95 Q75 85 85 95 Q75 105 65 95 Z"
-                fill="#ff4d6d"
-                opacity="0.7"
-              />
-            </motion.g>
-
-            {/* الوردة الجانبية اليمنى (بيضاء مائلة للوردي) */}
-            <motion.g
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              <circle cx="125" cy="95" r="22" fill="#ffe5ec" />
-              <circle cx="125" cy="95" r="16" fill="#ffb3c1" />
-              <path
-                d="M115 95 Q125 85 135 95 Q125 105 115 95 Z"
-                fill="#ff758f"
-                opacity="0.7"
-              />
-            </motion.g>
-
-            {/* الوردة المركزية الكبيرة (فوشيا / روز ملكي) */}
-            <motion.g
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.5, duration: 0.7, type: 'spring' }}
-            >
-              <circle cx="100" cy="80" r="26" fill="#ff758f" />
-              <circle cx="100" cy="80" r="20" fill="#ff4d6d" />
-              <circle cx="100" cy="80" r="14" fill="#c9184a" />
-              <path
-                d="M92 78 Q100 70 108 78 Q100 88 92 78 Z"
-                fill="#ffb3c1"
-                opacity="0.8"
-              />
-            </motion.g>
-
-            {/* براعم زهور صغيرة إضافية */}
-            <circle cx="60" cy="75" r="7" fill="#ffb703" />
-            <circle cx="140" cy="75" r="7" fill="#ffb703" />
-            <circle cx="100" cy="50" r="6" fill="#ffb703" />
-          </motion.svg>
-        </div>
-
-        {/* بطاقة التهنئة المرفقة */}
-        <div className="mt-4 p-4 bg-[#FFF8E7] rounded-2xl border border-pink-100 shadow-sm w-full">
-          <p className="handwriting text-sm text-[#5c243e] leading-relaxed">
-            &ldquo;A bouquet of endless roses and peonies for the one who brightens every single day.&rdquo;
-          </p>
-        </div>
-
-        {/* زر المتابعة */}
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={onContinue}
-          className="mt-6 px-8 py-3 rounded-full bg-[#f04299] text-white font-semibold shadow-md hover:shadow-pink-300/50 transition-all cursor-pointer"
+      {/* الوردة الكبيرة في منتصف الشاشة */}
+      <motion.div
+        initial={{ scale: 0.6, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.2, ease: 'backOut' }}
+        className="relative z-10 w-full max-w-sm sm:max-w-md aspect-square flex items-center justify-center my-auto"
+      >
+        <svg
+          viewBox="0 0 400 400"
+          className="w-full h-full filter drop-shadow-[0_15px_30px_rgba(240,66,153,0.25)]"
         >
-          Continue ✨
-        </motion.button>
+          <defs>
+            {/* تدرجات ألوان البتلات والظلال */}
+            <radialGradient id="roseGradient" cx="50%" cy="40%" r="50%">
+              <stop offset="0%" stopColor="#ff4d88" />
+              <stop offset="60%" stopColor="#e6005c" />
+              <stop offset="100%" stopColor="#990033" />
+            </radialGradient>
+            <radialGradient id="petalLight" cx="40%" cy="30%" r="60%">
+              <stop offset="0%" stopColor="#ff80aa" />
+              <stop offset="70%" stopColor="#f04299" />
+              <stop offset="100%" stopColor="#c71585" />
+            </radialGradient>
+            <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#99cc33" />
+              <stop offset="100%" stopColor="#4d8000" />
+            </linearGradient>
+            <linearGradient id="stemGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#558000" />
+              <stop offset="100%" stopColor="#2e4d00" />
+            </linearGradient>
+          </defs>
+
+          {/* ساق الوردة */}
+          <path
+            d="M200 240 Q195 310 205 380"
+            stroke="url(#stemGrad)"
+            strokeWidth="10"
+            strokeLinecap="round"
+            fill="none"
+          />
+
+          {/* أوراق الشجر الجانبية */}
+          <motion.path
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            d="M198 290 Q150 270 140 310 Q170 320 198 295"
+            fill="url(#leafGrad)"
+          />
+          <motion.path
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+            d="M202 330 Q250 310 265 345 Q230 360 202 335"
+            fill="url(#leafGrad)"
+          />
+
+          {/* البتلات الخارجية المتفتحة */}
+          <motion.path
+            animate={{ scale: [0.97, 1.02, 0.97] }}
+            transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+            d="M200 130 C120 110 90 200 140 240 C170 260 230 260 260 240 C310 200 280 110 200 130 Z"
+            fill="url(#roseGradient)"
+            opacity="0.95"
+          />
+
+          <path
+            d="M150 160 C120 190 140 240 180 245 C150 220 140 180 150 160 Z"
+            fill="url(#petalLight)"
+            opacity="0.8"
+          />
+          <path
+            d="M250 160 C280 190 260 240 220 245 C250 220 260 180 250 160 Z"
+            fill="url(#petalLight)"
+            opacity="0.8"
+          />
+
+          {/* قلب الوردة الملتف */}
+          <motion.ellipse
+            cx="200"
+            cy="185"
+            rx="45"
+            ry="35"
+            fill="url(#petalLight)"
+          />
+          <path
+            d="M175 175 Q200 155 225 175 Q200 205 175 175 Z"
+            fill="#ff1493"
+          />
+          <path
+            d="M185 178 Q200 165 215 178 Q200 195 185 178 Z"
+            fill="#b30047"
+          />
+          <circle cx="200" cy="180" r="10" fill="#80002a" />
+        </svg>
+      </motion.div>
+
+      {/* زر المتابعة في الأسفل */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.8 }}
+        className="z-10 mb-6"
+      >
+        <button
+          onClick={onContinue}
+          className="px-10 py-4 rounded-full bg-[#f04299] text-white text-base sm:text-lg font-bold shadow-lg hover:shadow-pink-400/50 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+        >
+          Continue To Flip Cards ✨
+        </button>
       </motion.div>
     </div>
   );
