@@ -182,7 +182,7 @@ export default function Hero({ onOpenGift, isGiftOpened }: HeroProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              Hey Princess! 💕
+              Hey My Cutie Princess! 💕
             </motion.h1>
 
             <motion.div
@@ -192,12 +192,11 @@ export default function Hero({ onOpenGift, isGiftOpened }: HeroProps) {
               transition={{ delay: 0.4 }}
             >
               <p>
-                I Wanted to do something special for you, for this princess day,
-                so I made something special just for you...
+                I just wanted to make you a special (and little) gift made only for a lovely princess like you...
               </p>
               <p className="pt-3">
                 <span className="font-semibold text-[#f04299]">
-                  Click below to see what it is! ✨
+                  Click below to access my heart! ✨
                 </span>
                 <span className="inline-block w-1.5 h-4 bg-[#f04299]/70 ml-1 animate-cursor"></span>
               </p>
@@ -213,7 +212,7 @@ export default function Hero({ onOpenGift, isGiftOpened }: HeroProps) {
               whileTap={{ scale: 0.95 }}
               aria-label="Open my heart"
             >
-              Open My Heart 💖
+              Open My Heart (be careful, don't hurt it, or you'll hurt yourself) 💖
             </motion.button>
 
             {/* Decorative element */}
