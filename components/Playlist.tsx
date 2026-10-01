@@ -35,7 +35,7 @@ const tracks: Track[] = [
   {
     id: 3,
     title: 'You are the love my life',
-    description: 'No matter when, where, or what happens, I will be there for you. I'm completely yours. 💞',
+    description: 'No matter when, where, or what happens, I will be there for you. I am completely yours. 💞',
     image: '/assets/music3.png',
     audio: '/assets/music3-ClPh4k2q.mp3',
   },
