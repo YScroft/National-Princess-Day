@@ -29,7 +29,7 @@ const cards: Card[] = [
     id: 2,
     image: '/assets/pic2.png',
     message:
-      "You don&apos;t even have to try — you just make everything around you feel lighter, warmer, better. ✨",
+      "One of the things I love about you, is that you never get mad at me no matter what. Thank you for that (promise i'll never give you a reason to).✨",
     gradient: 'from-blue-200 to-teal-200',
     delay: 0.2,
   },
@@ -37,7 +37,7 @@ const cards: Card[] = [
     id: 3,
     image: '/assets/pic3.png',
     message:
-      "The little things you do — your expressions, your laughter, the way you talk — they&apos;ve all become my favorite details. 🌸",
+      "Just a kiss for you. 🌸",
     gradient: 'from-yellow-200 to-orange-200',
     delay: 0.4,
   },
