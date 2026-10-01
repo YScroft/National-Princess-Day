@@ -142,7 +142,7 @@ export default function SealedLetter({
               Letter Sealed with Love
             </h2>
             <p className="text-sm sm:text-base text-[#9a4c73] mb-5">
-              I Love You Always
+              I Love You forever
             </p>
 
             {/* Animated Hearts */}
@@ -169,7 +169,7 @@ export default function SealedLetter({
 
             {/* Always Yours */}
             <div className="text-lg sm:text-xl font-semibold text-[#1b0d14] mb-1">
-              <span className="text-[#c0396f]">Always Yours 💕</span>
+              <span className="text-[#c0396f]">i adore youuuu 💕</span>
             </div>
 
             {/* Date */}
