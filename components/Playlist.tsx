@@ -215,7 +215,7 @@ export default function Playlist({ onContinue }: PlaylistProps) {
                 <div className="text-sm font-bold text-[#1b0d14] truncate">
                   {currentTrackData.title}
                 </div>
-                <div className="text-xs text-[#9a4c73] mb-2 truncate">
+                <div className="text-xs text-[#9a4c73] mb-2 whitespace-normal break-words leading-snug">
                   {currentTrackData.description}
                 </div>
                 <div className="flex items-center gap-2">
@@ -285,8 +285,8 @@ export default function Playlist({ onContinue }: PlaylistProps) {
                   key={track.id}
                   onClick={() => handleTrackClick(track.id)}
                   style={{
-                    flex: '0 0 78%', // تجعل البطاقة تأخذ 78% من عرض الشاشة وتترك 22% لإظهار أطراف البطاقات المجاورة
-                    maxWidth: '220px',
+                    flex: '0 0 78%',
+                    maxWidth: '240px',
                     scrollSnapAlign: 'center',
                   }}
                   className={`cursor-pointer transition-transform ${
@@ -305,7 +305,7 @@ export default function Playlist({ onContinue }: PlaylistProps) {
                     <div className="font-bold text-[#1b0d14] text-xs mb-1">
                       {track.title}
                     </div>
-                    <div className="text-[10px] text-[#9a4c73] line-clamp-2">
+                    <div className="text-[11px] text-[#9a4c73] leading-relaxed whitespace-normal break-words">
                       {track.description}
                     </div>
                   </div>
