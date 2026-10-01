@@ -100,18 +100,17 @@ export default function Playlist({ onContinue }: PlaylistProps) {
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: -260, behavior: 'smooth' });
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: 260, behavior: 'smooth' });
     }
   };
 
   const handleTrackClick = async (trackId: number) => {
-    // Stop all other tracks
     Object.values(audioRefs.current).forEach((audio) => {
       if (audio && audio !== audioRefs.current[trackId]) {
         audio.pause();
@@ -123,20 +122,16 @@ export default function Playlist({ onContinue }: PlaylistProps) {
     if (audio) {
       try {
         if (currentTrack === trackId && !audio.paused) {
-          // Pause if already playing
           audio.pause();
           setIsPlaying(false);
         } else {
-          // Play the track
           await audio.play();
           setCurrentTrack(trackId);
           setIsPlaying(true);
         }
       } catch (error) {
         console.error('Error playing audio:', error);
-        // If autoplay is blocked, try to play on user interaction
         if (error instanceof Error && error.name === 'NotAllowedError') {
-          // Request user interaction
           showToast.error('Please click the play button to start the music');
         }
       }
@@ -186,10 +181,10 @@ export default function Playlist({ onContinue }: PlaylistProps) {
     : null;
 
   return (
-    <div className="page-container font-display relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 py-6">
+    <div className="page-container font-display relative min-h-screen flex flex-col items-center justify-center px-3 sm:px-6 md:px-8 py-6">
       {/* Decorative floating elements */}
       <svg
-        className="absolute top-16 left-8 w-10 h-10 animate-float-slow"
+        className="absolute top-16 left-8 w-10 h-10 animate-float-slow hidden sm:block"
         viewBox="0 0 24 24"
         fill="none"
       >
@@ -200,24 +195,13 @@ export default function Playlist({ onContinue }: PlaylistProps) {
       </svg>
 
       <svg
-        className="absolute right-10 top-20 w-12 h-12 opacity-80 animate-float"
+        className="absolute right-10 top-20 w-12 h-12 opacity-80 animate-float hidden sm:block"
         viewBox="0 0 24 24"
         fill="none"
       >
         <path
           d="M20 17.58A4.42 4.42 0 0115.58 22H7.42A4.42 4.42 0 013 17.58 4.5 4.5 0 017.5 13H8a5 5 0 019.9-1.2A3.5 3.5 0 0120 17.58z"
           fill="#B0E0E6"
-        />
-      </svg>
-
-      <svg
-        className="absolute left-16 bottom-32 w-8 h-8 animate-float-slow"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M12 21s-6-4.35-8.5-6.5C1.85 12.73 3 9 6 8c2.28-.75 3.5 1 6 1s3.72-1.75 6-1c3 1 4.15 4.73 2.5 6.5C18 16.65 12 21 12 21z"
-          fill="#FFD1DC"
         />
       </svg>
 
@@ -235,10 +219,10 @@ export default function Playlist({ onContinue }: PlaylistProps) {
         </div>
 
         {/* Playlist Container */}
-        <div className="bg-[#FFF8E7] rounded-2xl p-4 sm:p-5 md:p-6 border border-pink-200 shadow-md animate-fadeIn mx-auto">
+        <div className="bg-[#FFF8E7] rounded-2xl p-3 sm:p-5 md:p-6 border border-pink-200 shadow-md animate-fadeIn mx-auto overflow-hidden">
           {/* Music Player */}
           {currentTrackData ? (
-            <div className="mb-6 flex items-center gap-4 p-3 rounded-lg bg-white/70 border border-pink-100 shadow-sm max-w-lg w-full mx-auto">
+            <div className="mb-6 flex items-center gap-3 sm:gap-4 p-3 rounded-lg bg-white/70 border border-pink-100 shadow-sm max-w-lg w-full mx-auto">
               <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0 shadow-sm">
                 <Image
                   src={currentTrackData.image}
@@ -283,7 +267,7 @@ export default function Playlist({ onContinue }: PlaylistProps) {
               </div>
               <button
                 onClick={handlePlayPause}
-                className="w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all transform bg-white text-[#f04299] border border-pink-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300 cursor-pointer"
+                className="w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all transform bg-white text-[#f04299] border border-pink-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300 cursor-pointer flex-shrink-0"
                 aria-label={isPlaying ? 'Pause' : 'Play'}
               >
                 {isPlaying ? (
@@ -311,24 +295,24 @@ export default function Playlist({ onContinue }: PlaylistProps) {
               </button>
             </div>
           ) : (
-            <div className="mb-6 h-20 flex items-center justify-center">
-              <div className="text-base text-[#9a4c73] font-medium text-center">
+            <div className="mb-6 h-16 sm:h-20 flex items-center justify-center">
+              <div className="text-sm sm:text-base text-[#9a4c73] font-medium text-center">
                 Choose a track to start vibing ✨
               </div>
             </div>
           )}
 
           {/* Carousel */}
-          <div className="mb-8">
+          <div className="mb-4 sm:mb-8">
             <div className="relative max-w-4xl mx-auto">
               {/* Left Arrow */}
               <button
                 onClick={scrollLeft}
                 disabled={!canScrollLeft}
-                className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg border border-pink-200 flex items-center justify-center transition-all focus:outline-none focus:ring-4 focus:ring-pink-300 ${
+                className={`absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/90 shadow-lg border border-pink-200 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-pink-300 ${
                   canScrollLeft
                     ? 'text-[#f04299] hover:bg-pink-50 cursor-pointer'
-                    : 'text-gray-300 cursor-not-allowed'
+                    : 'text-gray-300 cursor-not-allowed opacity-0 pointer-events-none'
                 }`}
                 aria-label="Scroll left"
               >
@@ -347,10 +331,10 @@ export default function Playlist({ onContinue }: PlaylistProps) {
               <button
                 onClick={scrollRight}
                 disabled={!canScrollRight}
-                className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg border border-pink-200 flex items-center justify-center transition-all focus:outline-none focus:ring-4 focus:ring-pink-300 ${
+                className={`absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/90 shadow-lg border border-pink-200 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-pink-300 ${
                   canScrollRight
                     ? 'text-[#f04299] hover:bg-pink-50 cursor-pointer'
-                    : 'text-gray-300 cursor-not-allowed'
+                    : 'text-gray-300 cursor-not-allowed opacity-0 pointer-events-none'
                 }`}
                 aria-label="Scroll right"
               >
@@ -368,20 +352,20 @@ export default function Playlist({ onContinue }: PlaylistProps) {
               {/* Tracks Container */}
               <div
                 ref={scrollContainerRef}
-                className="flex gap-4 overflow-x-auto scrollbar-hide px-14 py-2 justify-start"
-                style={{ scrollbarWidth: 'none' }}
+                className="flex gap-3 sm:gap-4 overflow-x-auto snap-x snap-mandatory px-4 sm:px-14 py-2 justify-start sm:justify-center"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
                 {tracks.map((track) => (
                   <div
                     key={track.id}
-                    className={`group relative cursor-pointer transform transition-all duration-300 flex-shrink-0 w-56 h-full hover:scale-105 hover:z-10 ${
+                    className={`group relative cursor-pointer transform transition-all duration-300 flex-shrink-0 snap-center w-[220px] sm:w-56 hover:scale-105 hover:z-10 ${
                       currentTrack === track.id
                         ? 'ring-2 ring-[#f04299] ring-offset-2 rounded-xl'
                         : ''
                     }`}
                     onClick={() => handleTrackClick(track.id)}
                   >
-                    <div className="relative bg-white rounded-xl p-4 border-2 shadow-lg transition-all border-pink-100 hover:border-pink-200 hover:shadow-xl group-hover:shadow-pink-200/30 h-full flex flex-col">
+                    <div className="relative bg-white rounded-xl p-3 sm:p-4 border-2 shadow-lg transition-all border-pink-100 hover:border-pink-200 hover:shadow-xl group-hover:shadow-pink-200/30 h-full flex flex-col">
                       <div className="relative mb-3">
                         <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-pink-200 via-purple-200 to-pink-300 shadow-md">
                           <Image
@@ -389,18 +373,17 @@ export default function Playlist({ onContinue }: PlaylistProps) {
                             alt={track.title}
                             fill
                             className="object-cover"
-                            sizes="224px"
+                            sizes="(max-width: 640px) 220px, 224px"
                             onError={(e) => {
-                              // Hide image on error, show fallback
                               e.currentTarget.style.display = 'none';
                             }}
                           />
-                          <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-30 pointer-events-none">
+                          <div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-6xl opacity-30 pointer-events-none">
                             🎵
                           </div>
                         </div>
                         <div className="absolute inset-0 flex items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
-                          <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
                             {currentTrack === track.id ? (
                               <svg
                                 width="20"
@@ -440,10 +423,10 @@ export default function Playlist({ onContinue }: PlaylistProps) {
                         )}
                       </div>
                       <div className="text-center flex-1 flex flex-col justify-center">
-                        <div className="font-bold text-[#1b0d14] mb-1 text-sm min-h-[1.25rem]">
+                        <div className="font-bold text-[#1b0d14] mb-1 text-xs sm:text-sm min-h-[1.25rem]">
                           {track.title}
                         </div>
-                        <div className="text-xs text-[#9a4c73] leading-relaxed min-h-[2.5rem] flex items-center justify-center">
+                        <div className="text-[11px] sm:text-xs text-[#9a4c73] leading-relaxed min-h-[2.5rem] flex items-center justify-center">
                           {track.description}
                         </div>
                       </div>
@@ -465,9 +448,6 @@ export default function Playlist({ onContinue }: PlaylistProps) {
                           'Failed to load audio. Please check the file.'
                         );
                       }}
-                      onLoadedData={() => {
-                        console.log('Audio loaded:', track.title);
-                      }}
                     />
                   </div>
                 ))}
@@ -478,10 +458,10 @@ export default function Playlist({ onContinue }: PlaylistProps) {
 
         {/* Continue Button */}
         {onContinue && (
-          <div className="text-center mt-8 sm:mt-10">
+          <div className="text-center mt-6 sm:mt-10">
             <button
               onClick={onContinue}
-              className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-[#f04299] text-white font-semibold shadow-md transition-all transform hover:scale-105 active:scale-95 hover:shadow-pink-300/50 focus:outline-none focus:ring-4 focus:ring-pink-300 cursor-pointer"
+              className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-[#f04299] text-white font-semibold shadow-md transition-all transform hover:scale-105 active:scale-95 hover:shadow-pink-300/50 focus:outline-none focus:ring-4 focus:ring-pink-300 cursor-pointer text-sm sm:text-base"
               aria-label="Continue to next"
             >
               Continue to Next ✨
