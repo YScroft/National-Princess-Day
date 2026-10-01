@@ -20,7 +20,8 @@ const cards: Card[] = [
   {
     id: 1,
     image: '/assets/pic1.png',
-    message: 'I Love u Divya 💕',
+    message:
+      "I told you about what I dreamt once; when I wanted to hold your hand and you pulled it away. You told me you would never do that, and I believe you. I still hope you&apos;ll change your mind about hanging out so I can walk next to you while holding your hand. 💕",
     gradient: 'from-pink-200 to-purple-200',
     delay: 0,
   },
@@ -28,7 +29,7 @@ const cards: Card[] = [
     id: 2,
     image: '/assets/pic2.png',
     message:
-      "You don't even have to try — you just make everything around you feel lighter, warmer, better. ✨",
+      "You don&apos;t even have to try — you just make everything around you feel lighter, warmer, better. ✨",
     gradient: 'from-blue-200 to-teal-200',
     delay: 0.2,
   },
@@ -36,7 +37,7 @@ const cards: Card[] = [
     id: 3,
     image: '/assets/pic3.png',
     message:
-      "The little things you do — your expressions, your laughter, the way you talk — they've all become my favorite details. 🌸",
+      "The little things you do — your expressions, your laughter, the way you talk — they&apos;ve all become my favorite details. 🌸",
     gradient: 'from-yellow-200 to-orange-200',
     delay: 0.4,
   },
@@ -64,7 +65,7 @@ export default function FlipCards({ onRestart }: FlipCardsProps) {
       // Add delay to allow user to see the back of the last card
       const timer = setTimeout(() => {
         setShowModal(true);
-      }, 3500); // 1.5 second delay
+      }, 3500); // 3.5 seconds delay
 
       return () => clearTimeout(timer);
     }
