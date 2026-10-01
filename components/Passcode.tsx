@@ -42,7 +42,7 @@ export default function Passcode({ onSuccess }: PasscodeProps) {
       >
         <div className="text-4xl mb-3">👑</div>
         <h2 className="text-xl font-bold text-gray-800 mb-1">Enter Passcode</h2>
-        <p className="text-sm text-gray-500 mb-8">A date we will never forget ✨</p>
+        <p className="text-sm text-gray-500 mb-8">A day I will never forget ✨</p>
 
         {/* دوائر عرض الرمز */}
         <motion.div
