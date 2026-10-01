@@ -55,7 +55,7 @@ export default function Playlist({ onContinue }: PlaylistProps) {
     if (scrollContainerRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } =
         scrollContainerRef.current;
-      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollLeft(scrollLeft > 5);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
     }
   };
@@ -69,7 +69,6 @@ export default function Playlist({ onContinue }: PlaylistProps) {
     }
   }, []);
 
-  // Update current time and duration
   useEffect(() => {
     if (currentTrack) {
       const audio = audioRefs.current[currentTrack];
@@ -100,13 +99,13 @@ export default function Playlist({ onContinue }: PlaylistProps) {
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -260, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: -220, behavior: 'smooth' });
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 260, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: 220, behavior: 'smooth' });
     }
   };
 
@@ -181,30 +180,7 @@ export default function Playlist({ onContinue }: PlaylistProps) {
     : null;
 
   return (
-    <div className="page-container font-display relative min-h-screen flex flex-col items-center justify-center px-3 sm:px-6 md:px-8 py-6">
-      {/* Decorative floating elements */}
-      <svg
-        className="absolute top-16 left-8 w-10 h-10 animate-float-slow hidden sm:block"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M12 2l2.39 4.84L19 8.1l-3.5 3.41.82 5.04L12 15.77 7.68 16.55l.82-5.04L5 8.1l4.61-1.26L12 2z"
-          fill="#FFF7A1"
-        />
-      </svg>
-
-      <svg
-        className="absolute right-10 top-20 w-12 h-12 opacity-80 animate-float hidden sm:block"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M20 17.58A4.42 4.42 0 0115.58 22H7.42A4.42 4.42 0 013 17.58 4.5 4.5 0 017.5 13H8a5 5 0 019.9-1.2A3.5 3.5 0 0120 17.58z"
-          fill="#B0E0E6"
-        />
-      </svg>
-
+    <div className="page-container font-display relative min-h-screen flex flex-col items-center justify-center px-2 sm:px-6 md:px-8 py-6">
       <div className="w-full max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-center gap-3 mb-6">
@@ -219,7 +195,7 @@ export default function Playlist({ onContinue }: PlaylistProps) {
         </div>
 
         {/* Playlist Container */}
-        <div className="bg-[#FFF8E7] rounded-2xl p-3 sm:p-5 md:p-6 border border-pink-200 shadow-md animate-fadeIn mx-auto overflow-hidden">
+        <div className="bg-[#FFF8E7] rounded-2xl p-2 sm:p-5 md:p-6 border border-pink-200 shadow-md animate-fadeIn mx-auto overflow-hidden">
           {/* Music Player */}
           {currentTrackData ? (
             <div className="mb-6 flex items-center gap-3 sm:gap-4 p-3 rounded-lg bg-white/70 border border-pink-100 shadow-sm max-w-lg w-full mx-auto">
@@ -234,9 +210,6 @@ export default function Playlist({ onContinue }: PlaylistProps) {
                     e.currentTarget.style.display = 'none';
                   }}
                 />
-                <div className="absolute inset-0 flex items-center justify-center text-lg opacity-30 pointer-events-none">
-                  🎵
-                </div>
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-sm font-bold text-[#1b0d14] truncate">
@@ -256,9 +229,6 @@ export default function Playlist({ onContinue }: PlaylistProps) {
                     value={currentTime}
                     onChange={handleSeek}
                     className="flex-1 h-1 accent-[#f04299] appearance-none bg-pink-100 rounded-full cursor-pointer"
-                    style={{
-                      background: `linear-gradient(to right, #f04299 0%, #f04299 ${(currentTime / (duration || 1)) * 100}%, #fce7f3 ${(currentTime / (duration || 1)) * 100}%, #fce7f3 100%)`,
-                    }}
                   />
                   <span className="text-xs text-[#9a4c73] w-8 text-right">
                     {formatTime(duration)}
@@ -267,31 +237,9 @@ export default function Playlist({ onContinue }: PlaylistProps) {
               </div>
               <button
                 onClick={handlePlayPause}
-                className="w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all transform bg-white text-[#f04299] border border-pink-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-300 cursor-pointer flex-shrink-0"
-                aria-label={isPlaying ? 'Pause' : 'Play'}
+                className="w-10 h-10 rounded-full flex items-center justify-center shadow-md bg-white text-[#f04299] border border-pink-200 flex-shrink-0"
               >
-                {isPlaying ? (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <rect
-                      x="6"
-                      y="4"
-                      width="4"
-                      height="16"
-                      fill="currentColor"
-                    />
-                    <rect
-                      x="14"
-                      y="4"
-                      width="4"
-                      height="16"
-                      fill="currentColor"
-                    />
-                  </svg>
-                ) : (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M8 5v14l11-7z" fill="currentColor" />
-                  </svg>
-                )}
+                {isPlaying ? '⏸' : '▶'}
               </button>
             </div>
           ) : (
@@ -303,166 +251,83 @@ export default function Playlist({ onContinue }: PlaylistProps) {
           )}
 
           {/* Carousel */}
-          <div className="mb-4 sm:mb-8">
-            <div className="relative max-w-4xl mx-auto">
-              {/* Left Arrow */}
+          <div className="relative max-w-full mx-auto">
+            {/* Scroll Buttons */}
+            {canScrollLeft && (
               <button
                 onClick={scrollLeft}
-                disabled={!canScrollLeft}
-                className={`absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/90 shadow-lg border border-pink-200 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-pink-300 ${
-                  canScrollLeft
-                    ? 'text-[#f04299] hover:bg-pink-50 cursor-pointer'
-                    : 'text-gray-300 cursor-not-allowed opacity-0 pointer-events-none'
-                }`}
-                aria-label="Scroll left"
+                className="absolute left-1 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white shadow-md text-[#f04299] flex items-center justify-center"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M15 18l-6-6 6-6"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                ‹
               </button>
-
-              {/* Right Arrow */}
+            )}
+            {canScrollRight && (
               <button
                 onClick={scrollRight}
-                disabled={!canScrollRight}
-                className={`absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/90 shadow-lg border border-pink-200 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-pink-300 ${
-                  canScrollRight
-                    ? 'text-[#f04299] hover:bg-pink-50 cursor-pointer'
-                    : 'text-gray-300 cursor-not-allowed opacity-0 pointer-events-none'
-                }`}
-                aria-label="Scroll right"
+                className="absolute right-1 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white shadow-md text-[#f04299] flex items-center justify-center"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M9 18l6-6-6-6"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                ›
               </button>
+            )}
 
-              {/* Tracks Container */}
-              <div
-                ref={scrollContainerRef}
-                className="flex gap-3 sm:gap-4 overflow-x-auto snap-x snap-mandatory px-4 sm:px-14 py-2 justify-start sm:justify-center"
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-              >
-                {tracks.map((track) => (
-                  <div
-                    key={track.id}
-                    className={`group relative cursor-pointer transform transition-all duration-300 flex-shrink-0 snap-center w-[220px] sm:w-56 hover:scale-105 hover:z-10 ${
-                      currentTrack === track.id
-                        ? 'ring-2 ring-[#f04299] ring-offset-2 rounded-xl'
-                        : ''
-                    }`}
-                    onClick={() => handleTrackClick(track.id)}
-                  >
-                    <div className="relative bg-white rounded-xl p-3 sm:p-4 border-2 shadow-lg transition-all border-pink-100 hover:border-pink-200 hover:shadow-xl group-hover:shadow-pink-200/30 h-full flex flex-col">
-                      <div className="relative mb-3">
-                        <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-pink-200 via-purple-200 to-pink-300 shadow-md">
-                          <Image
-                            src={track.image}
-                            alt={track.title}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 640px) 220px, 224px"
-                            onError={(e) => {
-                              e.currentTarget.style.display = 'none';
-                            }}
-                          />
-                          <div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-6xl opacity-30 pointer-events-none">
-                            🎵
-                          </div>
-                        </div>
-                        <div className="absolute inset-0 flex items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
-                          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
-                            {currentTrack === track.id ? (
-                              <svg
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                              >
-                                <rect
-                                  x="6"
-                                  y="4"
-                                  width="4"
-                                  height="16"
-                                  fill="#f04299"
-                                />
-                                <rect
-                                  x="14"
-                                  y="4"
-                                  width="4"
-                                  height="16"
-                                  fill="#f04299"
-                                />
-                              </svg>
-                            ) : (
-                              <svg
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                              >
-                                <path d="M8 5v14l11-7z" fill="#f04299" />
-                              </svg>
-                            )}
-                          </div>
-                        </div>
-                        {currentTrack === track.id && (
-                          <div className="absolute top-2 right-2 w-3 h-3 bg-[#f04299] rounded-full animate-pulse"></div>
-                        )}
-                      </div>
-                      <div className="text-center flex-1 flex flex-col justify-center">
-                        <div className="font-bold text-[#1b0d14] mb-1 text-xs sm:text-sm min-h-[1.25rem]">
-                          {track.title}
-                        </div>
-                        <div className="text-[11px] sm:text-xs text-[#9a4c73] leading-relaxed min-h-[2.5rem] flex items-center justify-center">
-                          {track.description}
-                        </div>
-                      </div>
+            {/* Tracks Container */}
+            <div
+              ref={scrollContainerRef}
+              className="flex gap-3 overflow-x-auto py-2 px-2"
+              style={{
+                scrollSnapType: 'x mandatory',
+                WebkitOverflowScrolling: 'touch',
+                scrollbarWidth: 'none',
+              }}
+            >
+              {tracks.map((track) => (
+                <div
+                  key={track.id}
+                  onClick={() => handleTrackClick(track.id)}
+                  style={{
+                    flex: '0 0 78%', // تجعل البطاقة تأخذ 78% من عرض الشاشة وتترك 22% لإظهار أطراف البطاقات المجاورة
+                    maxWidth: '220px',
+                    scrollSnapAlign: 'center',
+                  }}
+                  className={`cursor-pointer transition-transform ${
+                    currentTrack === track.id ? 'scale-105' : ''
+                  }`}
+                >
+                  <div className="bg-white rounded-xl p-3 border-2 border-pink-100 shadow-md h-full flex flex-col items-center text-center">
+                    <div className="relative w-full aspect-square rounded-lg overflow-hidden mb-2 bg-pink-100">
+                      <Image
+                        src={track.image}
+                        alt={track.title}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
-                    <audio
-                      ref={(el) => {
-                        audioRefs.current[track.id] = el;
-                      }}
-                      src={track.audio}
-                      preload="metadata"
-                      onEnded={() => {
-                        setCurrentTrack(null);
-                        setIsPlaying(false);
-                        setCurrentTime(0);
-                      }}
-                      onError={(e) => {
-                        console.error('Audio error:', e);
-                        showToast.error(
-                          'Failed to load audio. Please check the file.'
-                        );
-                      }}
-                    />
+                    <div className="font-bold text-[#1b0d14] text-xs mb-1">
+                      {track.title}
+                    </div>
+                    <div className="text-[10px] text-[#9a4c73] line-clamp-2">
+                      {track.description}
+                    </div>
                   </div>
-                ))}
-              </div>
+                  <audio
+                    ref={(el) => {
+                      audioRefs.current[track.id] = el;
+                    }}
+                    src={track.audio}
+                    preload="metadata"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Continue Button */}
         {onContinue && (
-          <div className="text-center mt-6 sm:mt-10">
+          <div className="text-center mt-6">
             <button
               onClick={onContinue}
-              className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-[#f04299] text-white font-semibold shadow-md transition-all transform hover:scale-105 active:scale-95 hover:shadow-pink-300/50 focus:outline-none focus:ring-4 focus:ring-pink-300 cursor-pointer text-sm sm:text-base"
-              aria-label="Continue to next"
+              className="px-8 py-3 rounded-full bg-[#f04299] text-white font-semibold shadow-md text-sm sm:text-base"
             >
               Continue to Next ✨
             </button>
