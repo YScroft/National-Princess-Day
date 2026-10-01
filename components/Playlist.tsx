@@ -20,7 +20,7 @@ interface Track {
 const tracks: Track[] = [
   {
     id: 1,
-    title: 'Dil Cheeze Tujhe Dedi',
+    title: 'I am Sorry',
     description: 'I wish we could forget what I said that day and all the tension and discussions it triggered. Let's leave all that impact behind and give ourselves a fresh start. 💞',
     image: '/assets/music1.png',
     audio: '/assets/music1-Bpgt1BZ5.mp3',
