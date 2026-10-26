@@ -21,7 +21,7 @@ const cards: Card[] = [
     id: 1,
     image: '/assets/pic1.png',
     message:
-      "I told you about what I dreamt once; when I wanted to hold your hand and you pulled it away. You told me you would never do that, and I believe you. I still hope you will change your mind about hanging out so I can walk next to you while holding your hand. 💕",
+      "I once told you about a dream I had, where I wanted to hold your hand, but you pulled yours away. You told me you would never do that, and I believed you. I used to imagine that, when you finished your summer training, I might finally get to hold your hand and turn that little dream into a real memory. It felt closer than ever and a part of me truly believed we would get that chance. Sometimes, I find myself wondering how things might have turned out if I had been a little gentler in certain moments. But Perhaps some dreams remain just dreams.💕",
     gradient: 'from-pink-200 to-purple-200',
     delay: 0,
   },
