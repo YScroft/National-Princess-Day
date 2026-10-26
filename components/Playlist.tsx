@@ -21,7 +21,7 @@ const tracks: Track[] = [
   {
     id: 1,
     title: 'I am Sorry',
-    description: "I wish we could forget what I said that day and all the tension and discussions it triggered. Let's leave all that impact behind and give ourselves a fresh start: 💞",
+    description: "I’m sorry for the things that made things heavier between us. All what i wanted that we could leave them behind and make room for happier moments together. 💞",
     image: '/assets/music1.png',
     audio: '/assets/music1-Bpgt1BZ5.mp3',
   },
