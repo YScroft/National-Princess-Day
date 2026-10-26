@@ -188,25 +188,36 @@ export default function FlipCards({ onRestart }: FlipCardsProps) {
                       </div>
                     </div>
 
-                    {/* Back of card */}
-                    <div className="absolute inset-0 w-full h-full bg-white rounded-lg border-2 border-pink-200 shadow-lg rotate-y-180 backface-hidden p-3 sm:p-4 flex flex-col overflow-hidden">
-                      <div className="flex-1 min-h-0 flex flex-col">
-                        <div
-                          className="flex-1 min-h-0 overflow-y-auto overscroll-contain text-center text-xs sm:text-sm leading-relaxed text-[#1b0d14] px-1"
-                          style={{
-                            WebkitOverflowScrolling: 'touch',
-                          }}
-                        >
-                          {card.message}
-                        </div>
+                    
+{/* Back of card */}
+<div className="absolute inset-0 w-full h-full bg-white rounded-lg border-2 border-pink-200 shadow-lg rotate-y-180 backface-hidden p-3 sm:p-4 flex flex-col overflow-hidden">
+  <div className="flex-1 min-h-0 flex flex-col">
+    <div className="relative flex-1 min-h-0">
+      <div
+        className="h-full overflow-y-auto overscroll-contain text-center text-xs sm:text-sm leading-relaxed text-[#1b0d14] px-1 pb-5"
+        style={{ WebkitOverflowScrolling: 'touch' }}
+      >
+        {card.message}
+      </div>
 
-                        <div className="shrink-0 pt-2 text-center">
-                          <div className="px-2 py-1 bg-pink-50 rounded-full text-xs font-medium text-[#9a4c73] border border-pink-100 inline-block hover:bg-pink-100 transition-colors cursor-pointer">
-                            Tap to flip back
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+      {/* Scroll hint */}
+      {card.id === 1 && (
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex flex-col items-center bg-gradient-to-t from-white via-white/95 to-transparent pt-5 pb-1">
+          <span className="text-[10px] font-medium text-[#9a4c73] animate-pulse">
+            ↓ Scroll to read more
+          </span>
+        </div>
+      )}
+    </div>
+
+    <div className="shrink-0 pt-2 text-center">
+      <div className="px-2 py-1 bg-pink-50 rounded-full text-xs font-medium text-[#9a4c73] border border-pink-100 inline-block hover:bg-pink-100 transition-colors cursor-pointer">
+        Tap to flip back
+      </div>
+    </div>
+  </div>
+</div>
+
                   </div>
                 </div>
               );
