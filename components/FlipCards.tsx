@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -36,8 +37,7 @@ const cards: Card[] = [
   {
     id: 3,
     image: '/assets/pic3.png',
-    message:
-      "Just a kiss for you. 🌸",
+    message: 'Just a kiss for you. 🌸',
     gradient: 'from-yellow-200 to-orange-200',
     delay: 0.4,
   },
@@ -51,21 +51,22 @@ export default function FlipCards({ onRestart }: FlipCardsProps) {
   const handleCardClick = (cardId: number) => {
     setFlippedCards((prev) => {
       const newSet = new Set(prev);
+
       if (newSet.has(cardId)) {
         newSet.delete(cardId);
       } else {
         newSet.add(cardId);
       }
+
       return newSet;
     });
   };
 
   useEffect(() => {
     if (flippedCards.size === cards.length) {
-      // Add delay to allow user to see the back of the last card
       const timer = setTimeout(() => {
         setShowModal(true);
-      }, 3500); // 3.5 seconds delay
+      }, 3500);
 
       return () => clearTimeout(timer);
     }
@@ -87,7 +88,7 @@ export default function FlipCards({ onRestart }: FlipCardsProps) {
   }
 
   return (
-    <div className="page-container font-display relative min-h-screen flex flex-col items-center justify-center px-3 sm:px-4 md:px-6 py-2 sm:py-4">
+    <div className="page-container font-display relative min-h-screen flex flex-col items-center justify-start sm:justify-center px-3 sm:px-4 md:px-6 py-4 sm:py-4">
       {/* Decorative floating elements */}
       <svg
         className="absolute top-8 sm:top-12 left-4 sm:left-8 w-6 sm:w-8 h-6 sm:h-8 animate-float-slow"
@@ -140,6 +141,7 @@ export default function FlipCards({ onRestart }: FlipCardsProps) {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
             {cards.map((card) => {
               const isFlipped = flippedCards.has(card.id);
+
               return (
                 <div
                   key={card.id}
@@ -169,14 +171,17 @@ export default function FlipCards({ onRestart }: FlipCardsProps) {
                             e.currentTarget.style.display = 'none';
                           }}
                         />
+
                         <div
                           className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-25`}
                         />
+
                         <div className="absolute bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <div className="px-2 py-1 bg-white/95 rounded-full text-xs font-medium text-[#9a4c73] border border-pink-100 shadow-lg backdrop-blur-sm animate-pulse">
                             ✨ Tap!
                           </div>
                         </div>
+
                         <div className="absolute top-1.5 right-1.5 w-3 h-3 animate-sparkle text-xs">
                           ✨
                         </div>
@@ -184,14 +189,18 @@ export default function FlipCards({ onRestart }: FlipCardsProps) {
                     </div>
 
                     {/* Back of card */}
-                    <div className="absolute w-full h-full bg-white rounded-lg border-2 border-pink-200 shadow-lg rotate-y-180 backface-hidden p-3 sm:p-4 flex flex-col justify-center">
-                      <div className="text-center space-y-2 h-full flex flex-col justify-center">
-                        <div className="flex-1 flex items-center justify-center">
-                          <div className="text-xs sm:text-sm leading-relaxed text-[#1b0d14] px-1 overflow-y-auto max-h-full">
-                            {card.message}
-                          </div>
+                    <div className="absolute inset-0 w-full h-full bg-white rounded-lg border-2 border-pink-200 shadow-lg rotate-y-180 backface-hidden p-3 sm:p-4 flex flex-col overflow-hidden">
+                      <div className="flex-1 min-h-0 flex flex-col">
+                        <div
+                          className="flex-1 min-h-0 overflow-y-auto overscroll-contain text-center text-xs sm:text-sm leading-relaxed text-[#1b0d14] px-1"
+                          style={{
+                            WebkitOverflowScrolling: 'touch',
+                          }}
+                        >
+                          {card.message}
                         </div>
-                        <div className="pt-1">
+
+                        <div className="shrink-0 pt-2 text-center">
                           <div className="px-2 py-1 bg-pink-50 rounded-full text-xs font-medium text-[#9a4c73] border border-pink-100 inline-block hover:bg-pink-100 transition-colors cursor-pointer">
                             Tap to flip back
                           </div>
@@ -209,6 +218,7 @@ export default function FlipCards({ onRestart }: FlipCardsProps) {
             <div className="text-xs sm:text-sm text-[#9a4c73] font-medium">
               Start by tapping any card above ✨
             </div>
+
             <div className="mt-2 w-full max-w-xs mx-auto bg-pink-100 rounded-full h-1.5 overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-[#f04299] to-pink-400 rounded-full transition-all duration-500 ease-out"
@@ -224,14 +234,19 @@ export default function FlipCards({ onRestart }: FlipCardsProps) {
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
           <div className="bg-white rounded-2xl p-5 sm:p-6 max-w-sm w-full mx-4 shadow-2xl animate-popUp border-2 border-pink-200">
             <div className="text-center space-y-3 sm:space-y-4">
-              <div className="text-3xl sm:text-4xl animate-bounce">🎉</div>
+              <div className="text-3xl sm:text-4xl animate-bounce">
+                🎉
+              </div>
+
               <h3 className="text-lg sm:text-xl font-bold text-[#f04299]">
                 All Messages Unlocked!
               </h3>
+
               <p className="text-sm text-[#9a4c73] leading-relaxed">
                 Each message is a piece of my heart that belongs to you forever.
                 ✨
               </p>
+
               <div className="space-y-2.5 pt-1">
                 <button
                   onClick={handleOpenFinalLetter}
@@ -239,6 +254,7 @@ export default function FlipCards({ onRestart }: FlipCardsProps) {
                 >
                   Open the Final Letter 💌
                 </button>
+
                 <button
                   onClick={handleStayHere}
                   className="w-full text-xs text-[#9a4c73] hover:text-[#f04299] transition-colors cursor-pointer"
