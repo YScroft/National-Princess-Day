@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -8,6 +9,7 @@ interface PasscodeProps {
 export default function Passcode({ onSuccess }: PasscodeProps) {
   const [code, setCode] = useState('');
   const [error, setError] = useState(false);
+  const [showHint, setShowHint] = useState(false);
   const correctCode = '0603';
 
   const handleDigit = (digit: string) => {
@@ -89,6 +91,24 @@ export default function Passcode({ onSuccess }: PasscodeProps) {
             Delete
           </button>
         </div>
+
+        {/* Hint */}
+        <button
+          onClick={() => setShowHint((prev) => !prev)}
+          className="mt-6 text-sm font-medium text-pink-500 hover:text-pink-600 transition-colors"
+        >
+          {showHint ? 'Hide Hint' : 'Hint'}
+        </button>
+
+        {showHint && (
+          <motion.p
+            initial={{ opacity: 0, y: -5 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-3 text-base font-medium text-gray-600"
+          >
+            3 June
+          </motion.p>
+        )}
       </motion.div>
     </div>
   );
