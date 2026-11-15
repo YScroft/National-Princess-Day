@@ -153,16 +153,16 @@ export default function FinalLetter({ onRestart }: FinalLetterProps) {
                 My sweetest Princess,
               </p>
               <p>
-                This is a little bit of a tough world, and you are the shelter that I always seek.
+                This world can be a little harsh, but you are the shelter I will always seek.
               </p>
               <p className="text-[#5a9bb8]">
-                Your happiness is my priority, be sure of that.
+                Your happiness is my priority. Please never doubt that.
               </p>
               <p>
-                In the time we have left, I will make the best memories ever and make you even happier, that&apos;s a promise.
+                With the time we have left, I promise to create the most beautiful memories with you and make you happier than ever.
               </p>
               <p className="text-[#a67fb8]">
-                Forever Yours.
+                
               </p>
             </article>
 
