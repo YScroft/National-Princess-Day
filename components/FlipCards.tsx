@@ -30,7 +30,7 @@ const cards: Card[] = [
     id: 2,
     image: '/assets/pic2.png',
     message:
-      "One of the things I love about you, is that you never get mad at me no matter what. Thank you for that (promise i'll never give you a reason to).✨",
+      "One of the things I love about you, is how patient and kind you've always been with me. Thank you for that.✨",
     gradient: 'from-blue-200 to-teal-200',
     delay: 0.2,
   },
