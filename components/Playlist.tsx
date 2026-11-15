@@ -20,7 +20,7 @@ interface Track {
 const tracks: Track[] = [
   {
     id: 1,
-    title: 'You're so sweeeeet',
+    title: "You're so sweeeeet",
     description: "The doctor prescribed honey, perhaps because a little sweetness is what I need.. 💞",
     image: '/assets/music1.png',
     audio: '/assets/music1-Bpgt1BZ5.mp3',
