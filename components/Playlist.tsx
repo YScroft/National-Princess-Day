@@ -20,8 +20,8 @@ interface Track {
 const tracks: Track[] = [
   {
     id: 1,
-    title: 'I am Sorry',
-    description: "I’m sorry for the things that made things heavier between us. All what i wanted that we could leave them behind and make room for happier moments together. 💞",
+    title: 'You're so sweeeeet',
+    description: "The doctor prescribed honey, perhaps because a little sweetness is what I need.. 💞",
     image: '/assets/music1.png',
     audio: '/assets/music1-Bpgt1BZ5.mp3',
   },
@@ -35,7 +35,7 @@ const tracks: Track[] = [
   {
     id: 3,
     title: 'You are the love my life',
-    description: 'No matter when, where, or what happens, I will be there for you. I am completely yours. 💞',
+    description: 'No matter when, where, or what happens, I will be there for you. 💞',
     image: '/assets/music3.png',
     audio: '/assets/music3-ClPh4k2q.mp3',
   },
