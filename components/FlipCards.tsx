@@ -22,7 +22,7 @@ const cards: Card[] = [
     id: 1,
     image: '/assets/pic1.png',
     message:
-      "I once told you about a dream I had, where I wanted to hold your hand, but you pulled yours away. You told me you would never do that, and I believed you. I used to imagine that, when you finished your summer training, I might finally get to hold your hand and turn that little dream into a real memory. It felt closer than ever and a part of me truly believed we would get that chance. Sometimes, I find myself wondering how things might have turned out if I had been a little gentler in certain moments. But Perhaps some dreams remain just dreams.💕",
+      "I once told you about a dream I had, where I wanted to hold your hand, but you pulled yours away. You told me you would never do that. I believe you. I used to hope to turn that little dream into a real memory. It felt closer than ever; and a part of me truly believed we would get that chance. And yet, perhaps some dreams are meant to remain just dreams.💕",
     gradient: 'from-pink-200 to-purple-200',
     delay: 0,
   },
